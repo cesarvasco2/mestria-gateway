@@ -9,10 +9,10 @@ import calendar
 sqs = boto3.resource('sqs', region_name='us-east-1')
 queue = sqs.get_queue_by_name(QueueName='processador_entrada')
 #configurações do broker:
-Broker = 'servermqtt.duckdns.org'
+Broker = ''
 PortaBroker = 1883 
-Usuario = 'afira'
-Senha = 'afira'
+Usuario = ''
+Senha = ''
 KeepAliveBroker = 60
 TopicoSubscribe = 'mestria/#' #Topico que ira se inscrever
 #Callback - conexao ao broker realizada
