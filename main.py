@@ -9,10 +9,10 @@ import calendar
 sqs = boto3.resource('sqs', region_name='us-east-1')
 queue = sqs.get_queue_by_name(QueueName='processador_entrada')
 #configurações do broker:
-Broker = ''
+Broker = 'message.hidroview.com.br'
 PortaBroker = 1883 
-Usuario = ''
-Senha = ''
+Usuario = 'mestria_gateway'
+Senha = 'UhFQ+^AG%6eL8MdzQ8ZW'
 KeepAliveBroker = 60
 TopicoSubscribe = 'mestria/#' #Topico que ira se inscrever
 #Callback - conexao ao broker realizada
@@ -32,7 +32,7 @@ def on_message(client, userdata, msg):
         {'key':'rele','type':'int','fields':('PUMP1','PUMP2',)},
         {'key':'status','type':'int','fields':('PUMP1','PUMP2',)},
         {'key':'pulso','type':'int','fields':('VOLUME1','VOLUME2',)},
-        {'key':'horimetro','type':'4a20','fields':('HOURMETER1','HOURMETER2',)},
+        {'key':'horimetro','type':'horimetro','fields':('HOURMETER1','HOURMETER2',)},
 
 
     ]
@@ -50,7 +50,11 @@ def on_message(client, userdata, msg):
             elif campo['type']=='pulso':
                 for field in campo['fields']:
                     if field in dict_payload['DATA']:
-                        elementos_do_campo.append(int(dict_payload['DATA'][field]))                
+                        elementos_do_campo.append(int(dict_payload['DATA'][field])) 
+            elif campo['type']=='horimetro':
+                for field in campo['fields']:
+                    if field in dict_payload['DATA']:
+                        elementos_do_campo.append(str(float(dict_payload['DATA'][field])/10))                           
             else:
                 for field in campo['fields']:
                     if field in dict_payload['DATA']:
