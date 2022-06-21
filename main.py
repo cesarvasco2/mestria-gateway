@@ -32,6 +32,7 @@ def on_message(client, userdata, msg):
         {'key':'rele','type':'int','fields':('PUMP1','PUMP2',)},
         {'key':'status','type':'int','fields':('PUMP1','PUMP2',)},
         {'key':'pulso','type':'int','fields':('VOLUME1','VOLUME2',)},
+        {'key':'ct_pulso','type':'int','fields':('PERIOD1','PERIOD2',)},
         {'key':'horimetro','type':'horimetro','fields':('HOURMETER1','HOURMETER2',)},
 
 
