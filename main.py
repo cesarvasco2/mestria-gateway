@@ -47,7 +47,7 @@ def on_message(client, userdata, msg):
             if campo['type']=='4a20':
                 for field in campo['fields']:
                     if field in dict_payload['DATA']:
-                        elementos_do_campo.append(int(dict_payload['DATA'][field])/100)
+                        elementos_do_campo.append(str(float(dict_payload['DATA'][field])/100))
             elif campo['type']=='m3':
                 for field in campo['fields']:
                     if field in dict_payload['DATA']:
