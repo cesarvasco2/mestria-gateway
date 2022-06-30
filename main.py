@@ -31,7 +31,7 @@ def on_message(client, userdata, msg):
         {'key':'entradas_4a20','type':'4a20','fields':('LEVEL',)},
         {'key':'rele','type':'int','fields':('PUMP1','PUMP2',)},
         {'key':'status','type':'int','fields':('PUMP1','PUMP2',)},
-        {'key':'pulso','type':'int','fields':('VOLUME1','VOLUME2',)},
+        {'key':'pulso','type':'m3','fields':('VOLUME1','VOLUME2',)},
         {'key':'ct_pulso','type':'int','fields':('PERIOD1','PERIOD2',)},
         {'key':'horimetro','type':'horimetro','fields':('HOURMETER1','HOURMETER2',)},
 
@@ -47,15 +47,19 @@ def on_message(client, userdata, msg):
             if campo['type']=='4a20':
                 for field in campo['fields']:
                     if field in dict_payload['DATA']:
-                        elementos_do_campo.append(str(float(dict_payload['DATA'][field])/100))
-            elif campo['type']=='pulso':
+                        elementos_do_campo.append(int(dict_payload['DATA'][field])/100)
+            elif campo['type']=='m3':
                 for field in campo['fields']:
                     if field in dict_payload['DATA']:
-                        elementos_do_campo.append(int(dict_payload['DATA'][field])) 
+                        elementos_do_campo.append(str(float(dict_payload['DATA'][field])/1000)) 
             elif campo['type']=='horimetro':
                 for field in campo['fields']:
                     if field in dict_payload['DATA']:
-                        elementos_do_campo.append(str(float(dict_payload['DATA'][field])/10))                           
+                        elementos_do_campo.append(str(float(dict_payload['DATA'][field])/10))  
+            elif campo['type']=='pulso':
+                for field in campo['fields']:
+                    if field in dict_payload['DATA']:
+                        elementos_do_campo.append(int(dict_payload['DATA'][field]))                                     
             else:
                 for field in campo['fields']:
                     if field in dict_payload['DATA']:
