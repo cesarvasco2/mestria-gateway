@@ -87,7 +87,7 @@ def on_message(client, userdata, msg):
     for item in remover_vazio:
         dict_save.pop(item)
     print(dict_save)  
-    queue.send_message(MessageBody=str(json.dumps(dict_save, ensure_ascii=False)))  
+    #queue.send_message(MessageBody=str(json.dumps(dict_save, ensure_ascii=False)))  
 try:
     print('[STATUS] Inicializando MQTT...')
     #inicializa MQTT:
