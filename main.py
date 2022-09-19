@@ -61,7 +61,10 @@ def on_message(client, userdata, msg):
             elif campo['type']=='horimetro':
                 for field in campo['fields']:
                     if field in dict_payload['DATA']:
-                        elementos_do_campo.append(str(float(dict_payload['DATA'][field])/10))  
+                        if field != "0":
+                            elementos_do_campo.append(str(float(dict_payload['DATA'][field])/10))  
+                        else:  
+                            elementos_do_campo.append(str(float(dict_payload['DATA'][field])))    
             elif campo['type']=='pulso':
                 for field in campo['fields']:
                     if field in dict_payload['DATA']:
