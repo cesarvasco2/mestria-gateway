@@ -47,11 +47,17 @@ def on_message(client, userdata, msg):
             if campo['type']=='4a20':
                 for field in campo['fields']:
                     if field in dict_payload['DATA']:
-                        elementos_do_campo.append(str(float(dict_payload['DATA'][field])/100))
+                        if field != 0:
+                            elementos_do_campo.append(str(float(dict_payload['DATA'][field])/100))
+                        else:
+                             elementos_do_campo.append(str(float(dict_payload['DATA'][field])))   
             elif campo['type']=='m3':
                 for field in campo['fields']:
                     if field in dict_payload['DATA']:
-                        elementos_do_campo.append(str(float(dict_payload['DATA'][field])/1000)) 
+                        if field != 0:
+                            elementos_do_campo.append(str(float(dict_payload['DATA'][field])/1000)) 
+                        else:    
+                            elementos_do_campo.append(dict_payload['DATA'][field]) 
             elif campo['type']=='horimetro':
                 for field in campo['fields']:
                     if field in dict_payload['DATA']:
